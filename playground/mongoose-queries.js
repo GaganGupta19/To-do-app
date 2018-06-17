@@ -51,6 +51,9 @@ User.findOne({
 
 //for find by id
 User.findById(userId).then((user) => {
+    if(!user){
+        return console.log('User not found');
+    }
     console.log('find by id user');
     console.log(user);
 }).catch((e) => {console.log(e)});
