@@ -8,3 +8,18 @@ Todo.find({
 }).then((todos) => {
     console.log(todos);
 });
+
+
+//return a single object
+Todo.findOne({
+    _id: id
+}).then((todo) => {
+    console.log(todo);
+});
+
+
+//return find by id
+Todo.findById(id).then((todo) => {
+    console.log('Todo find by id');
+    console.log(todo);
+});
