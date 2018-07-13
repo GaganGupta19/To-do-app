@@ -1,7 +1,8 @@
-let express = require('express');
-let bodyParser = require('body-parser');
+const _ = require('lodash');
+const express = require('express');
+const bodyParser = require('body-parser');
+const {ObjectId} = require('mongodb');
 
-let {ObjectId} = require('mongodb');
 let {mongoose} = require('./db/mongoose');
 let {Todo} = require('./models/todo');
 let {User} = require('./models/user');
@@ -63,6 +64,15 @@ app.delete('/todos/:id', (req, res) => {
         }
         res.send(todo);
     }).catch((e) => res.status(400).send(e));
+});
+
+//patch route
+app.patch('/todos/:id', (req, res) => {
+    let id = req.params.id;
+    if(!ObjectId.isValid(id)){
+        return res.status(404).send({'error': 'Invalid ID'});
+    }
+    Todo
 });
 
 app.listen(port, () => {
